@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>All Services | ServiceHub</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+
+  <nav class="navbar">
+    <div class="container">
+      <a href="/" class="logo">ServiceHub.</a>
+      <button class="mobile-menu-btn" id="mobileMenuBtn">
+        <i class="fas fa-bars"></i>
+      </button>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="/">Home</a></li>
+        <li><a href="/services.html" class="active">Services</a></li>
+        <li><a href="/admin.html">Admin</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <div class="container services-section">
+    <div class="section-title">
+      <h2>Explore Our Services</h2>
+      <p>Find the perfect solution for your business needs.</p>
+    </div>
+
+    <div class="controls-container">
+      <div class="filter-categories" id="categoryFilters">
+        <button class="filter-btn active" data-category="All">All</button>
+        <button class="filter-btn" data-category="Web">Web</button>
+        <button class="filter-btn" data-category="AI">AI</button>
+        <button class="filter-btn" data-category="Mobile">Mobile</button>
+        <button class="filter-btn" data-category="UI/UX">UI/UX</button>
+        <button class="filter-btn" data-category="Marketing">Marketing</button>
+      </div>
+
+      <div class="search-bar">
+        <i class="fas fa-search" style="color: var(--text-muted);"></i>
+        <input type="text" id="searchInput" placeholder="Search services...">
+      </div>
+    </div>
+
+    <div id="loader" class="loader"></div>
+    <div id="errorMsg" class="error-message" style="display: none;"></div>
+
+    <div class="services-grid" id="servicesGrid">
+      <!-- Services will be injected here -->
+    </div>
+
+    <div class="pagination" id="pagination">
+      <!-- Pagination will be injected here -->
+    </div>
+  </div>
+
+  <footer>
+    <div class="container">
+      <p>&copy; 2026 ServiceHub. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script src="/js/main.js"></script>
+  <script src="/js/services.js"></script>
+</body>
+</html>

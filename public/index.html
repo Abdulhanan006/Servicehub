@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ServiceHub | Premium Services</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+
+  <nav class="navbar">
+    <div class="container">
+      <a href="/" class="logo">ServiceHub.</a>
+      <button class="mobile-menu-btn" id="mobileMenuBtn">
+        <i class="fas fa-bars"></i>
+      </button>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="/" class="active">Home</a></li>
+        <li><a href="/services.html">Services</a></li>
+        <li><a href="/admin.html">Admin</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <header class="hero">
+    <div class="container">
+      <h1>Elevate Your Business with Expert Services</h1>
+      <p>Discover a curated selection of premium services designed to help you grow, innovate, and succeed in the digital world.</p>
+      <div class="hero-btns">
+        <a href="/services.html" class="btn btn-primary">Explore Services</a>
+        <a href="#featured" class="btn btn-outline" style="color: white; border-color: rgba(255,255,255,0.5);">Learn More</a>
+      </div>
+    </div>
+  </header>
+
+  <section id="featured" class="services-section">
+    <div class="container">
+      <div class="section-title">
+        <h2>Featured Services</h2>
+        <p>Explore some of our most popular offerings tailored for your success.</p>
+      </div>
+
+      <div id="featuredLoader" class="loader"></div>
+      <div id="featuredError" class="error-message" style="display: none;"></div>
+
+      <div class="services-grid" id="featuredGrid">
+        <!-- Services will be injected here via JS -->
+      </div>
+
+      <div style="text-align: center; margin-top: 3rem;">
+        <a href="/services.html" class="btn btn-outline">View All Services <i class="fas fa-arrow-right" style="margin-left: 0.5rem;"></i></a>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container">
+      <p>&copy; 2026 ServiceHub. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script src="/js/main.js"></script>
+  <script>
+    // Fetch some featured services for the homepage
+    document.addEventListener('DOMContentLoaded', async () => {
+      const grid = document.getElementById('featuredGrid');
+      const loader = document.getElementById('featuredLoader');
+      const errorMsg = document.getElementById('featuredError');
+
+      try {
+        const res = await fetch('/api/services?limit=3');
+        const result = await res.json();
+
+        if (result.success) {
+          loader.style.display = 'none';
+          
+          if (result.data.length === 0) {
+            grid.innerHTML = '<div class="empty-state">No services found.</div>';
+            return;
+          }
+
+          result.data.forEach(service => {
+            const priceHtml = service.price > 0 ? `$${service.price}` : 'Custom';
+            const imgPath = service.image_url.startsWith('http') ? service.image_url : service.image_url;
+            
+            const card = document.createElement('div');
+            card.className = 'service-card';
+            card.innerHTML = `
+              <img src="${imgPath}" alt="${service.title}" class="service-img" onerror="this.src='https://via.placeholder.com/600x400?text=No+Image'">
+              <div class="service-content">
+                <span class="service-category">${service.category}</span>
+                <h3 class="service-title">${service.title}</h3>
+                <p class="service-desc">${service.short_description}</p>
+                <div class="service-footer">
+                  <span class="service-price">${priceHtml}</span>
+                  <a href="/service-details.html?slug=${service.slug}" class="service-link">
+                    Details <i class="fas fa-chevron-right"></i>
+                  </a>
+                </div>
+              </div>
+            `;
+            grid.appendChild(card);
+          });
+        }
+      } catch (error) {
+        loader.style.display = 'none';
+        errorMsg.style.display = 'block';
+        errorMsg.textContent = 'Failed to load featured services.';
+        console.error(error);
+      }
+    });
+  </script>
+</body>
+</html>

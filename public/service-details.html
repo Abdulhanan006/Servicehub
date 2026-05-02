@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Service Details | ServiceHub</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+
+  <nav class="navbar">
+    <div class="container">
+      <a href="/" class="logo">ServiceHub.</a>
+      <button class="mobile-menu-btn" id="mobileMenuBtn">
+        <i class="fas fa-bars"></i>
+      </button>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="/">Home</a></li>
+        <li><a href="/services.html" class="active">Services</a></li>
+        <li><a href="/admin.html">Admin</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <div class="container details-section">
+    <div id="loader" class="loader"></div>
+    <div id="errorMsg" class="error-message" style="display: none;"></div>
+
+    <div id="detailsContent" style="display: none;">
+      <!-- Breadcrumbs -->
+      <div style="margin-bottom: 2rem; color: var(--text-muted);">
+        <a href="/" style="hover: color: var(--primary-color);">Home</a> &gt; 
+        <a href="/services.html" style="hover: color: var(--primary-color);">Services</a> &gt; 
+        <span id="breadcrumbTitle" style="color: var(--text-main); font-weight: 500;">...</span>
+      </div>
+
+      <div class="details-grid">
+        <div class="details-main">
+          <div class="details-image">
+            <img id="serviceImg" src="" alt="">
+          </div>
+          <div class="details-content">
+            <h1 id="serviceTitle"></h1>
+            <div class="details-meta">
+              <span class="service-category" id="serviceCategory"></span>
+              <span style="color: var(--text-muted);"><i class="far fa-clock"></i> Delivery Time: Varies</span>
+            </div>
+            <h3>About This Service</h3>
+            <div class="details-description" id="serviceDesc"></div>
+          </div>
+        </div>
+
+        <div class="details-sidebar">
+          <div class="pricing-card">
+            <h3>Pricing Options</h3>
+            <div class="price-huge" id="servicePrice"></div>
+            <p style="color: var(--text-muted); margin-bottom: 2rem;">Get started today and elevate your business to the next level with our premium service.</p>
+            
+            <ul style="margin-bottom: 2rem;">
+              <li style="margin-bottom: 0.5rem;"><i class="fas fa-check" style="color: var(--secondary-color); margin-right: 0.5rem;"></i> High Quality Delivery</li>
+              <li style="margin-bottom: 0.5rem;"><i class="fas fa-check" style="color: var(--secondary-color); margin-right: 0.5rem;"></i> 24/7 Support</li>
+              <li style="margin-bottom: 0.5rem;"><i class="fas fa-check" style="color: var(--secondary-color); margin-right: 0.5rem;"></i> Satisfaction Guaranteed</li>
+            </ul>
+
+            <div class="action-btns">
+              <button class="btn btn-primary" onclick="alert('Order functionality coming soon!')">Order Service</button>
+              <button class="btn btn-outline" onclick="alert('Contact functionality coming soon!')">Contact Us</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <div class="container">
+      <p>&copy; 2026 ServiceHub. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script src="/js/main.js"></script>
+  <script src="/js/service-details.js"></script>
+</body>
+</html>
